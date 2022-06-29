@@ -47,6 +47,21 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				},
 			},
 			{
+				path: '/settings',
+				name: 'settings',
+				component: () => import('/@/views/home/index.vue'),
+				meta: {
+					title: 'message.router.settings',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: true,
+					isIframe: false,
+					roles: ['admin'],
+					icon: 'iconfont icon-xitongshezhi',
+				},
+			},
+			{
 				path: '/system',
 				name: 'system',
 				component: () => import('/@/layout/routerView/parent.vue'),

@@ -2,6 +2,7 @@
 export default {
 	router: {
 		home: '首页',
+		settings: '面板设置',
 		system: '系统设置',
 		systemMenu: '菜单管理',
 		systemRole: '角色管理',
@@ -74,7 +75,7 @@ export default {
 		layoutIfameView: '内嵌 iframe',
 	},
 	staticRoutes: {
-		signIn: '登录',
+		signIn: '登陆',
 		notFound: '找不到此页面',
 		noPower: '没有权限',
 	},
@@ -93,7 +94,7 @@ export default {
 		dropdown2: '个人中心',
 		dropdown3: '404',
 		dropdown4: '401',
-		dropdown5: '退出登录',
+		dropdown5: '退出登陆',
 		dropdown6: '代码仓库',
 		searchPlaceholder: '菜单搜索：支持中文、路由路径',
 		newTitle: '通知',

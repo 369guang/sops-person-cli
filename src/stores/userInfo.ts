@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import Cookies from 'js-cookie';
 import { UserInfosStates } from './interface';
 import { Session } from '/@/utils/storage';
+import { usersApi } from "/@/api/user";
 
 /**
  * 用户信息
@@ -33,20 +34,29 @@ export const useUserInfo = defineStore('userInfo', {
 			// test 按钮权限标识
 			let testAuthBtnList: Array<string> = ['btn.add', 'btn.link'];
 			// 不同用户模拟不同的用户权限
-			if (userName === 'admin') {
-				defaultRoles = adminRoles;
-				defaultAuthBtnList = adminAuthBtnList;
-			} else {
-				defaultRoles = testRoles;
-				defaultAuthBtnList = testAuthBtnList;
-			}
+			// if (userName === 'admin') {
+			// 	defaultRoles = adminRoles;
+			// 	defaultAuthBtnList = adminAuthBtnList;
+			// } else {
+			// 	defaultRoles = testRoles;
+			// 	defaultAuthBtnList = testAuthBtnList;
+			// }
+			// 管理员
+			defaultRoles = adminRoles;
+			defaultAuthBtnList = adminAuthBtnList;
+			const res = usersApi().getInfo({});
+			let id = 0;
+			res.then((data: any) => {
+				id = data.data.id
+			}).catch((err: any) => {
+				// console.log("ddd")
+				console.log(err);
+			})
 			// 用户信息模拟数据
 			const userInfos = {
-				userName: userName,
-				photo:
-					userName === 'admin'
-						? 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1813762643,1914315241&fm=26&gp=0.jpg'
-						: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=317673774,2961727727&fm=26&gp=0.jpg',
+				id: id,
+				username: userName,
+				photo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=317673774,2961727727&fm=26&gp=0.jpg',
 				time: new Date().getTime(),
 				roles: defaultRoles,
 				authBtnList: defaultAuthBtnList,

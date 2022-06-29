@@ -27,7 +27,7 @@
 				</template>
 			</el-input>
 		</el-form-item>
-		<el-form-item class="login-animation3">
+		<!--el-form-item class="login-animation3">
 			<el-col :span="15">
 				<el-input
 					type="text"
@@ -46,7 +46,7 @@
 			<el-col :span="8">
 				<el-button class="login-content-code">1234</el-button>
 			</el-col>
-		</el-form-item>
+		</el-form-item-->
 		<el-form-item class="login-animation4">
 			<el-button type="primary" class="login-content-submit" round @click="onSignIn" :loading="loading.signIn">
 				<span>{{ $t('message.account.accountBtnText') }}</span>
@@ -68,6 +68,7 @@ import { initBackEndControlRoutes } from '/@/router/backEnd';
 import { Session } from '/@/utils/storage';
 import { formatAxis } from '/@/utils/formatTime';
 import { NextLoading } from '/@/utils/loading';
+import {useLoginApi} from "/@/api/login";
 
 export default defineComponent({
 	name: 'loginAccount',
@@ -80,9 +81,9 @@ export default defineComponent({
 		const state = reactive({
 			isShowPassword: false,
 			ruleForm: {
-				userName: 'admin',
-				password: '123456',
-				code: '1234',
+				userName: 'guang',
+				password: 'guang123',
+				// code: '1234',
 			},
 			loading: {
 				signIn: false,
@@ -95,10 +96,16 @@ export default defineComponent({
 		// 登录
 		const onSignIn = async () => {
 			state.loading.signIn = true;
+      let data;
+      const { userName, password } = state.ruleForm;
+      console.log('userName', userName);
+      const res = await useLoginApi().signIn({ "username":userName, "password":password });
+      console.log("res")
+      console.log(res);
 			// 存储 token 到浏览器缓存
-			Session.set('token', Math.random().toString(36).substr(0));
+			Session.set('token', res.data);
 			// 模拟数据，对接接口时，记得删除多余代码及对应依赖的引入。用于 `/src/stores/userInfo.ts` 中不同用户登录判断（模拟数据）
-			Cookies.set('userName', state.ruleForm.userName);
+			Cookies.set('username', state.ruleForm.userName);
 			if (!themeConfig.value.isRequestRoutes) {
 				// 前端控制路由，2、请注意执行顺序
 				await initFrontEndControlRoutes();

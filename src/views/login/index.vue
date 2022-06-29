@@ -3,21 +3,21 @@
 		<div class="login-icon-group">
 			<div class="login-icon-group-title">
 				<img :src="logoMini" />
-				<div class="login-icon-group-title-text font25">{{ getThemeConfig.globalViceTitle }}</div>
+				<div class="login-icon-group-title-text font25">海姆达尔</div>
 			</div>
 			<img :src="loginIconTwo" class="login-icon-group-icon" />
 		</div>
 		<div class="login-content">
 			<div class="login-content-main">
-				<h4 class="login-content-title ml15">{{ getThemeConfig.globalTitle }}后台模板</h4>
+				<h4 class="login-content-title ml15">Heimdallr</h4>
 				<div v-if="!isScan">
 					<el-tabs v-model="tabsActiveName">
 						<el-tab-pane :label="$t('message.label.one1')" name="account">
 							<Account />
 						</el-tab-pane>
-						<el-tab-pane :label="$t('message.label.two2')" name="mobile">
+						<!--el-tab-pane :label="$t('message.label.two2')" name="mobile">
 							<Mobile />
-						</el-tab-pane>
+						</el-tab-pane-->
 					</el-tabs>
 				</div>
 				<Scan v-if="isScan" />

@@ -11,6 +11,19 @@ export function usersApi() {
                 url: "/api/user/info/",
                 method: "get"
             });
+        },
+        getAuthToTp: () => {
+            return request({
+                url: "/api/user/authtotp/",
+                method: "get"
+            });
+        },
+        updateSettings: (params: object) => {
+            return request({
+                url: "/api/user/settings/",
+                method: "post",
+                data: params
+            });
         }
     };
 }

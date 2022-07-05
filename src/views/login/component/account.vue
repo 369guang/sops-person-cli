@@ -98,10 +98,10 @@ export default defineComponent({
 			state.loading.signIn = true;
       let data;
       const { userName, password } = state.ruleForm;
-      console.log('userName', userName);
+      // console.log('userName', userName);
       const res = await useLoginApi().signIn({ "username":userName, "password":password });
-      console.log("res")
-      console.log(res);
+      // console.log("res")
+      // console.log(res);
 			// 存储 token 到浏览器缓存
 			Session.set('token', res.data);
 			// 模拟数据，对接接口时，记得删除多余代码及对应依赖的引入。用于 `/src/stores/userInfo.ts` 中不同用户登录判断（模拟数据）

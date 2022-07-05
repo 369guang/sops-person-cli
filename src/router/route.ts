@@ -49,7 +49,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 			{
 				path: '/settings',
 				name: 'settings',
-				component: () => import('/@/views/home/index.vue'),
+				component: () => import('/@/views/settings/index.vue'),
 				meta: {
 					title: 'message.router.settings',
 					isLink: '',
